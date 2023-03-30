@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <img src={{ user.profile.image.url }} class="card-img-top" alt="...">
+            <div class="card-body">
+                <h3 class="card-title text-primary">{{ user.first_name }} {{ user.last_name }}</h3>
+                <h5 class="card-title">@{{ user.username | upper }}</h5>
+                <small><i class="bi bi-geo-alt"></i> {{ user.profile.location }}</small>
+                <p class="card-text mt-3">{{ user.profile.bio }}</p>
+
+                <strong> Intereses: </strong> <br>
+                {% for interest in user.profile.interest.all %}
+                    <span class="badge text-bg-info">{{interest.name | upper}}</span>
+                {% endfor %}
+
+                <hr>
+                <a href={% url 'logout' %} class="btn btn-sm btn-success">Cerrar Sesión</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+{% endif %}
+{% endblock %}
+{% load static %}
+<div id="carouselExampleCaptions" class="carousel slide">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'Martillo1.jpg' %}" style="height: 700px;" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>Primera slide label</h1>
+          <h3>Some representative placeholder content for the first slide.</h3>
+          <button class="nt-3 p-4 px-5 btn font-weight-bold"> </button>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'Martillo2.jpg' %}" style="height: 700px;" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>Segunda slide label</h1>
+          <h3>Some representative placeholder content for the first slide.</h3>
+          <button class="nt-3 p-4 px-5 btn font-weight-bold"> </button>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'Martillo3.jpg' %}" style="height: 700px;" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>Tercera slide label</h1>
+          <h3>Some representative placeholder content for the first slide.</h3>
+          <button class="nt-3 p-4 px-5 btn font-weight-bold"> </button>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+
+
